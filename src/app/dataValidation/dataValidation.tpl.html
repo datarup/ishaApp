@@ -1,0 +1,66 @@
+<div id="dataValidation">
+    <div class="wrap">
+        <br/>
+        <div class="row no-gutter navbar navbar-default searchbar">
+            <div class="col-sm-2">
+                <h4>PRODUCT DETAILS</h4>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="row no-gutter navbar navbar-default searchbar">
+            <div class="col-sm-4"><input type="text" ng-model="isha.baseURL" placeholder="URL"  class="form-control"></div>
+            <div class="col-sm-2" ><input type="text" ng-model="isha.token" placeholder="Token"  class="form-control"></div>
+            <div class="col-sm-2" ><input type="text" ng-model="isha.page" placeholder="Page: 1" class="form-control"></div>
+            <div class="col-sm-2" ><input type="text" ng-model="isha.pageSize" placeholder="Page size: {{isha.pageSize}}"  class="form-control"></div>
+            <div class="col-sm-1" ><label class="btn btn-default" ng-model="isha.activeProducts" btn-checkbox>Active</label></div>
+        </div>
+        <div class = "row">
+            <div class="col-xs-4">
+                <button id="search-for-pois-button" type="submit" ng-click="getProducts()" class="btn btn-primary btn-lg btn-block ">
+                    <span data-ng-hide="poiSearching">GET PRODUCTS</span>
+                    <span data-ng-show="poiSearching">Getting Products<i class="fa fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+        </div>
+        <br/>
+        <div class="alert alert-danger" ng-show="poiGetFail">
+            Error getting product list, check F12 console for errors
+        </div>
+        <form class="form-inline" role="form" name="poiForm" ng-show="showPois" >
+            <div class="alert alert-warning" ng-hide="poisInView.length">
+                No products found.
+            </div>
+            <div id="pois-list" >
+                <h4>Search:<span class="label"><input ng-model="poiSearchText" class="form-control"></span></h4>
+                <div ng-repeat="aPoi in poisList | filter:poiSearchText track by aPoi.id "  class="row offers-item">
+                    <!--<div class="col-sm-1">-->
+                        <!--<img ng-src="{{aPoi.data.merchants[0].data.image_uri}}"/>-->
+                    <!--</div>-->
+                    <div class="col-sm-1 visible-sm"></div>
+                    <div class="col-sm-6">
+                        <!--<h5>{{ aPoi.data.merchants[0].name }}, {{aPoi.data.merchants[0].id}}</h5>-->
+                        <h4>NAME: <b>{{ aPoi.name }}</b>, SKU: {{aPoi.sku}}</h4>
+                        <p>ID: {{aPoi.id}}</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <div ng-repeat="outlet in aPoi.inventory track by outlet.outlet_id "  class="row offers-item col-sm-12">
+                            <p>Outlet: <b>{{ outlet.outlet_name }}</b>, Count: <b>{{outlet.count}}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-sm-12 text-center" id="pois-Pagination">-->
+                <!--<div ng-if="poisList.length > 10" class="text-center">-->
+                    <!--<pagination-->
+                            <!--ng-model="pagination.currentPage"-->
+                            <!--total-items="poisList.length"-->
+                            <!--items-per-page="pagination.numPerPage"-->
+                            <!--ng-change="pagination.updatePoisInView()"-->
+                            <!--max-size="pagination.maxPages">-->
+                    <!--</pagination>-->
+                <!--</div>-->
+            <!--</div>-->
+        </form>
+    </div>
+</div>

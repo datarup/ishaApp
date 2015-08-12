@@ -1,0 +1,258 @@
+.navbar.list-top-nav {
+	background-color: @gray7;
+	padding-left: 80px;
+	padding-top: 9px;
+	.navbar-header {
+		position: absolute;
+		top: 5px;
+		left: 20px;
+	}
+}
+
+
+ 
+#list-header {
+  padding:0px;
+}
+
+.navbar-default {
+	.navbar-brand {
+		background: @darkblue;
+		border-radius: 15px;
+		color: @white;
+		display: block;
+		height: auto;
+		margin: 29px 17px 17px 0px;
+		padding: 4px 15px 4px 5px;
+		font-size: 15px;
+		&:hover,&:focus {
+			color: @white;
+			background-color: @gray2;
+		}
+		
+	}
+	.navbar-text {
+		color: #777777;
+	}
+	.navbar-nav > li > a {
+		color: #777777;
+		&:hover, &:focus {
+			color: #333333;	
+			background-color: transparent;
+		}
+	}
+}
+
+#progress {
+	width: 60%;
+	margin: 20px auto;
+	background: @darkblue;
+	height: 8px;
+	position: relative;
+	top: 12px;
+	.progress-bar {
+		background: #FFF;
+	}
+}
+
+#progressNumbers{
+	padding-left: 0;
+	width: 60%;
+	color:@onstarblue;
+	height: 0;
+	margin: 0 auto 0 auto;
+	position: relative;
+	top: -39px;
+	
+	li {
+		display: inline-block;
+		width: 24.5%;
+		display: inline-block;
+		float: left;
+		margin-top: 16px;
+		&.first {
+			background: none repeat scroll 0 0 #FFFFFF;
+			height: 8px;
+			margin-top: 23px;
+			& span{
+				position: relative;
+				top: -5px;
+			}
+		}
+		&.last {
+			width: 0;
+		}
+		span{
+			background: none repeat scroll 0 0 #23282E;
+			border-radius: 50%;
+			color: #A9A9A9;
+			height: 3px;
+			margin-left: -8px;
+			margin-top: -10px;
+			padding:4px 8px;
+			text-align: center;
+			width: 38px;
+			cursor: pointer;
+			&.inital-progress {
+				background: none repeat scroll 0 0 #fff;
+				color:#4E5259
+			}
+		}
+	}
+}
+
+//Star Power
+i.rs_i_star_filled {
+  color: #fecd5f;
+}
+
+i.rs_i_star_blank {
+  color: @gray6;
+  position: relative;
+
+  .rs_i_star_filled {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.5em;
+    overflow: hidden;
+  }
+}
+
+
+//Color
+.amenitiesIcons {
+	color: @gray5;
+}
+
+.btn-primary {
+	background: @onstarblue;
+	border-color: transparent;
+	&:hover {
+	}
+}
+
+//Date picker styles
+.datepicker {
+	table {
+		thead button{
+			background: @onstarblue;
+			color: #FFF;
+			text-transform: uppercase;
+		}
+		tbody {
+			tr {
+				td {
+					button {
+						border-right: 1px solid @gray3;
+						border-bottom: 1px solid @gray3;
+						border-radius: 0px;
+						&.active {
+							background: @onstarblue;
+							border-color: transparent;
+							span {
+								color: @white;
+							}
+						}
+						&.btn-default[disabled], .btn[disabled] {
+							border-right: 1px solid @gray5;
+							border-bottom: 1px solid @gray5;
+							opacity: 0.25;
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	&.doubledate {
+		width: 620px;
+		top: 66px;
+	}
+	
+}
+
+//Spinning Animation
+.spinning-animation { 
+  display: block;
+    -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 1s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 1s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: rotate; 
+    animation-duration: 1s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(360deg);}
+    to {-webkit-transform: rotate(0deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(360deg);}
+    to {-moz-transform: rotate(0deg);}
+}
+
+@keyframes rotate {
+    from {transform: rotate(360deg);}
+    to {transform: rotate(0deg);}
+}
+
+//Default button
+.btn-primary{
+	&:hover, &:focus, &:active, &.active {
+		background: @onstarblue;
+	}
+	&.disabled, &[disabled] {
+		background-color: @gray1;
+		border-color: white;
+		&:hover, &:focus, &:active, &.active {
+			background-color: @gray1;
+			border-color: white;
+		}
+	}	
+}
+
+//POI Search
+.poi-search {
+	margin: 0px;
+	background: @gray2;
+	min-width: 182px;
+	-webkit-border-radius: 3px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius: 3px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-radius: 3px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	width: 100%;
+	li {
+		width: 100%;
+		a {
+			color: @white;
+			padding: 3px 9px;
+			.btn {
+				background: @darkblue;
+				font-size: 10px;
+				padding: 0px 6px;
+				color: @gray6;
+			}
+		}
+	}
+	.rs_i_search {
+		position: absolute;
+		top: 25px;
+		right: 27px;
+		font-size: 16px;
+		color: @gray4;
+	}
+}
+
