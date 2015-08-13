@@ -1,22 +1,3 @@
-//{
-//  "name": "Playlist Looper",
-//  "description": "Plays music on a schedule",
-//  "version": "0.0.1",
-//  "manifest_version": 2,
-//  "minimum_chrome_version": "29",
-//  "app": {
-//    "background": {
-//      "scripts": ["background.js"],
-//      "persistent": true
-//    },
-//    "icons": { "16": "gmLogoLarge.png", "128": "gmLogoLarge.png" }
-//  },
-//  "permissions": [
-//    "alarms"
-//  ]
-//}
-
-
 {
 "name": "Isha App",
 "version": "1.0",
