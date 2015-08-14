@@ -4,15 +4,8 @@
 "description": "Shows product list",
 "permissions": [
   "identity",
-  "background",
-  "alarms",
   "tabs",
-  "http://*/",
-  "https://chromeapp.vendhq.com/api/products?page_size=2&page=1&active=true",
-  "https://chromeapp.vendhq.com/api/products?*",
-  "https://ishashoppe.vendhq.com/api/products?page_size=2&page=1&active=true",
-  "https://ishashoppe.vendhq.com/api/products?*",
-  "https://www.google.com/accounts/OAuthGetAccessToken"
+  "https://*.vendhq.com/*"
 ],
 
 "background": { "scripts": ["background.js"]},
