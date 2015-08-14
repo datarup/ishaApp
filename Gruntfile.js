@@ -15,7 +15,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-html2js');
 	grunt.loadNpmTasks('grunt-war');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-crx');
 	/**
 	 * Load in our build configuration file.
 	 */
@@ -222,6 +222,17 @@ module.exports = function ( grunt ) {
 						cwd: '.'
 					}
 				]
+			},
+			distFiles: {
+				files: [
+					{
+						expand: true,
+						src: ['<%= dist_files.chromeApp %>', '<%= dist_files.html %>', '<%= dist_files.css %>',
+									'<%= dist_files.images %>', '<%= dist_files.vendor_all %>' ],
+						dest: '<%= dist_dir %>/',
+						cwd: '.'
+					}
+				]
 			}
 		},
 
@@ -272,6 +283,11 @@ module.exports = function ( grunt ) {
 			build: {
 				src: '<%= build_dir %>/vendor/vendor_all.js',
 				dest: '<%= build_dir %>/vendor/vendor_all.min.js'
+			},
+			dist_app_all: {
+				src: '<%= build_dir %>/app_all.js',
+				dest: '<%= dist_dir %>/build/app_all.js' //keeping the file name same here as it's referenced from index.html
+				//and we need un-minified version for development
 			}
 		},
 
@@ -294,96 +310,6 @@ module.exports = function ( grunt ) {
 					'<%= concat.build_all_js.dest %>',
 					'<%= vendor_files.css %>',
 					'<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.min.css'
-				]
-			}
-		},
-		/* The same task as index, but for the index.html in offers*/
-		offersindex: {
-			build: {
-				dir: '<%= build_dir %>/offers',
-				src: [
-					'<%= build_dir %>/vendor/vendor_all.min.js',
-					'<%= concat.build_all_js.dest %>',
-					'<%= vendor_files.css %>',
-					'<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.min.css'
-				]
-			}
-		},
-		/* The same task as index, but for the index.html in poioffers*/
-		poioffersindex: {
-			build: {
-				dir: '<%= build_dir %>/poioffers',
-				src: [
-					'<%= build_dir %>/vendor/vendor_all.min.js',
-					'<%= concat.build_all_js.dest %>',
-					'<%= vendor_files.css %>',
-					'<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.min.css'
-				]
-			}
-		},
-		/**
-		 * The `hotelsindex` task compiles the `hotels/index.html` file as a Grunt template. CSS
-		 * and JS files co-exist here but they get split apart later.
-		 */
-		hotelsindex: {
-			build: {
-				dir: '<%= build_dir %>/hotels',
-				src: [
-					'<%= build_dir %>/vendor/vendor_all.min.js',
-					'<%= concat.build_all_js.dest %>',
-					'<%= vendor_files.css %>',
-					'<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.min.css'
-				]
-			}
-		},
-
-		// Build a WAR without MAVEN or JVM installed
-		war: {
-			target: {
-				options: {
-					war_dist_folder: '<%= build_dir %>',
-					war_verbose: true,
-					war_name: 'advisor',
-					webxml: function (opts) {
-						var returnStr = '<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">';
-						returnStr += '<display-name>GM OnStar Advisor</display-name>';
-						returnStr += '<welcome-file-list><welcome-file>index.html</welcome-file></welcome-file-list>';
-						returnStr += '<mime-mapping><extension>woff</extension><mime-type>application/font-woff</mime-type></mime-mapping>';
-						returnStr += '</web-app>';
-
-						return returnStr;
-					},
-					war_extras: [
-						{
-							filename: 'WEB-INF/weblogic.xml',
-							data: function () {
-								var returnStr = '<weblogic-web-app version="1.3" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app/1.3/weblogic-web-app.xsd">';
-								returnStr += '<virtual-directory-mapping>';
-								returnStr += '<local-path>/usr/local/oracle/wls-latest/domains/mcemwa/props</local-path>';
-								returnStr += '<url-pattern>advisor.environment.js</url-pattern>';
-								returnStr += '</virtual-directory-mapping>';
-								returnStr += '</weblogic-web-app>';
-								return returnStr;
-							}
-						}
-					],
-					webxml_welcome: 'index.html',
-					webxml_display_name: 'GM Onstar Advisor',
-					webxml_mime_mapping: [
-						{
-							extension: 'woff',
-							mime_type: 'application/font-woff'
-						}
-					]
-
-				},
-				files: [
-					{
-						expand: true,
-						cwd: '<%= build_dir %>',
-						src: ['**', '!advisor.environment.js'],
-						dest: ''
-					}
 				]
 			}
 		},
@@ -518,6 +444,27 @@ module.exports = function ( grunt ) {
 					livereload: false
 				}
 			}
+		},
+
+		crx: {
+			ishaAppCrx: {
+				"src": [
+					'<%= dist_dir %>/<%= build_dir %>/**/*',
+					'!*.pem'
+				],
+				"dest": "<%= dist_dir %>/crx/",
+				"options": {
+					"privateKey": "<%= dist_dir %>/ishaApp.pem",
+					"maxBuffer": 3000 * 1024 //build extension with a weight up to 3MB
+				}
+			},
+			ishaAppZip: {
+				"src": [
+					'<%= dist_dir %>/<%= build_dir %>/**/*',
+					'!*.pem'
+				],
+				"zipDest": "<%= dist_dir %>/zip/"
+			}
 		}
 	};
 
@@ -533,6 +480,9 @@ module.exports = function ( grunt ) {
 		// commented this out as we are now using 'play' task and watch keeps its name
 		//grunt.renameTask( 'watch', 'delta' );
 	grunt.registerTask( 'play', [ 'build', 'watch' ] );
+
+	//TODO: find source and remove app_all.min.js from getting put in dist
+	grunt.registerTask( 'dist', [ 'build', 'copy:distFiles', 'uglify:dist_app_all', 'crx'] );
 
 	/**
 	 * The default task is to build.
@@ -561,9 +511,7 @@ module.exports = function ( grunt ) {
 		'copy:build_vendorcss',
 		'concat:build_css', 'concat:build_vendor_js', 'concat:build_app_js', 'cssmin:build', 'uglify:build',
 		'concat:build_all_js',
-		'index:build' ,
-		//'offersindex:build','poioffersindex:build', 'hotelsindex:build',
-		'war'
+		'index:build'
 	]);
 
 	/**
@@ -616,88 +564,4 @@ module.exports = function ( grunt ) {
 			}
 		});
 	});
-
-	grunt.registerMultiTask( 'offersindex', 'Process /offers/index.html template', function () {
-		var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
-		var lineStartRE = new RegExp( '^' );
-		var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-
-		var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-
-		grunt.file.copy('src/app/offers/index.html', grunt.config( 'build_dir' ) + '/offers/index.html', {
-			process: function ( contents, path ) {
-				return grunt.template.process( contents, {
-					data: {
-						scripts: jsFiles,
-						styles: cssFiles,
-						version: grunt.config( 'pkg.version' )
-					}
-				});
-			}
-		});
-	});
-
-	grunt.registerMultiTask( 'poioffersindex', 'Process /poioffers/index.html template', function () {
-		var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
-		var lineStartRE = new RegExp( '^' );
-		var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-
-		var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-
-		grunt.file.copy('src/app/poioffers/index.html', grunt.config( 'build_dir' ) + '/poioffers/index.html', {
-			process: function ( contents, path ) {
-				return grunt.template.process( contents, {
-					data: {
-						scripts: jsFiles,
-						styles: cssFiles,
-						version: grunt.config( 'pkg.version' )
-					}
-				});
-			}
-		});
-	});
-
-	grunt.registerMultiTask( 'hotelsindex', 'Process /hotels/index.html template', function () {
-		var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
-		var lineStartRE = new RegExp( '^' );
-		var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-		var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-			file = file.replace( dirRE, '' );
-			file = file.replace (lineStartRE, '../');
-			return file;
-		});
-
-		grunt.file.copy('src/app/hotels/index.html', grunt.config( 'build_dir' ) + '/hotels/index.html', {
-			process: function ( contents, path ) {
-				return grunt.template.process( contents, {
-					data: {
-						scripts: jsFiles,
-						styles: cssFiles,
-						version: grunt.config( 'pkg.version' )
-					}
-				});
-			}
-		});
-	});
-
 };
