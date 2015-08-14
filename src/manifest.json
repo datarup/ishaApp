@@ -1,6 +1,6 @@
 {
 "name": "Isha App",
-"version": "1.0",
+"version": "1.0.0",
 "description": "Shows product list",
 "permissions": [
   "identity",
@@ -20,7 +20,6 @@
 "browser_action": {
   "default_icon": "assets/images/isha19.png",
   "default_title": "Isha App"
-//  "default_popup": "index.html"
 },
 
 "icons": {

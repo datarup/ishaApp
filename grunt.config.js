@@ -8,6 +8,7 @@ module.exports = {
 	 * completely built.
 	 */
 	build_dir: 'build',
+	dist_dir: 'dist',
 
 
 
@@ -34,6 +35,15 @@ module.exports = {
 		chromeApp: ['src/background.js', 'src/manifest.json']
 	},
 
+	dist_files: {
+		//js_all: ['build/app_all.js'], //Copying it directly here, until we get minification working for app_all
+		vendor_all: ['build//vendor/vendor_all.min.js'],
+		css: [ 'build/assets/ishaApp-1.0.0.min.css' ],
+		html: [ ' build/index.html' ],
+		chromeApp: ['build/background.js', 'build/manifest.json'],
+		images: ['build/assets/images/**/*.png']
+	},
+
 	/**
 	 * This is a collection of files used during testing only.
 	 */
@@ -42,7 +52,6 @@ module.exports = {
 			'vendor/angular-mocks/angular-mocks.js'
 		]
 	},
-
 	/**
 	 * This is the same as `app_files`, except it contains patterns that
 	 * reference vendor code (`vendor/`) that we need to place into the build
@@ -77,7 +86,7 @@ module.exports = {
 			'vendor/angular-sanitize/angular-sanitize.js'
 		],
 		css: [
-			'vendor/angular-ui-select/dist/select.css'
+			//'vendor/angular-ui-select/dist/select.css'
 		],
 		assets: [
 			'vendor/bootstrap/fonts/glyphicons-halflings-regular.eot',

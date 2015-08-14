@@ -8,27 +8,27 @@ window.angularCallbacksProxy = function (data) {
   }
 };
 
-angular.module( 'ngBoilerplate', [
+var app = angular.module( 'ngBoilerplate', [
   'templates-app',
   'templates-common',
 	'ngBoilerplate.dataValidation',
 	'ui.router',
   'ui-rangeSlider',
 	'ui.select2'
-])
+]);
 
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, $httpProvider ) {
+app.config([ '$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/data' );
-})
+}]);
 
-.run( function run () {
-})
+app.run( function run () {
+});
 
-.controller( 'AppCtrl', function AppCtrl ( $rootScope, $scope, $location, $http ) {
+app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScope, $scope ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | Products' ;
     }
   });
-});
+}]);

@@ -11,8 +11,8 @@
         <div class="row no-gutter navbar navbar-default searchbar">
             <div class="col-sm-4"><input type="text" ng-model="isha.baseURL" placeholder="URL"  class="form-control"></div>
             <div class="col-sm-2" ><input type="text" ng-model="isha.token" placeholder="Token"  class="form-control"></div>
-            <div class="col-sm-2" ><input type="text" ng-model="isha.page" placeholder="Page: 1" class="form-control"></div>
-            <div class="col-sm-2" ><input type="text" ng-model="isha.pageSize" placeholder="Page size: {{isha.pageSize}}"  class="form-control"></div>
+            <div class="col-sm-2" ><input type="text" ng-model="isha.page" placeholder="Page Number: " class="form-control"></div>
+            <div class="col-sm-2" ><input type="text" ng-model="isha.pageSize" placeholder="Page size: "  class="form-control"></div>
             <div class="col-sm-1" ><label class="btn btn-default" ng-model="isha.activeProducts" btn-checkbox>Active</label></div>
         </div>
         <div class = "row">
@@ -33,7 +33,7 @@
             </div>
             <div id="pois-list" >
                 <h4>Search:<span class="label"><input ng-model="poiSearchText" class="form-control"></span></h4>
-                <div ng-repeat="aPoi in poisList | filter:poiSearchText track by aPoi.id "  class="row offers-item">
+                <div ng-repeat="aPoi in productList | filter:poiSearchText track by aPoi.id "  class="row offers-item">
                     <!--<div class="col-sm-1">-->
                         <!--<img ng-src="{{aPoi.data.merchants[0].data.image_uri}}"/>-->
                     <!--</div>-->
@@ -51,10 +51,10 @@
                 </div>
             </div>
             <!--<div class="col-sm-12 text-center" id="pois-Pagination">-->
-                <!--<div ng-if="poisList.length > 10" class="text-center">-->
+                <!--<div ng-if="productList.length > 10" class="text-center">-->
                     <!--<pagination-->
                             <!--ng-model="pagination.currentPage"-->
-                            <!--total-items="poisList.length"-->
+                            <!--total-items="productList.length"-->
                             <!--items-per-page="pagination.numPerPage"-->
                             <!--ng-change="pagination.updatePoisInView()"-->
                             <!--max-size="pagination.maxPages">-->
