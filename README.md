@@ -26,7 +26,7 @@ The extension is currently configured to work with VendHq product list API only.
 1. Add refresh token capability 
 2. Add complete end-to-end OAuth token generation
 3. Support more APIs within VendHq initially and branch out to other APIs
-4. ???
+4. Add feature to save remote URLs and other client info in local storage - A settings menu
 
 ## Contributing
 

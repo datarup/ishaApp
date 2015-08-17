@@ -1,4 +1,4 @@
-var dataModals = angular.module('ngBoilerplate.modals', []);
+var dataModals = angular.module('ishaApp.modals', []);
 
 dataModals.service('modalService', ['$modal',
 	function ($modal) {

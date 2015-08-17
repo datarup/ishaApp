@@ -5,6 +5,7 @@
 "permissions": [
   "identity",
   "tabs",
+  "storage",
   "https://*.vendhq.com/*"
 ],
 

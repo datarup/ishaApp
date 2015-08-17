@@ -1,9 +1,9 @@
-var dataValidation = angular.module( 'ngBoilerplate.dataValidation', [
+var dataValidation = angular.module( 'ishaApp.dataValidation', [
 				'ui.router',
         'ui.bootstrap',
         'ui.select',
         'ngSanitize',
-				'ngBoilerplate.modals'
+				'ishaApp.modals'
     ]);
 
 dataValidation.config(['$stateProvider', function config( $stateProvider ) {
@@ -15,7 +15,7 @@ dataValidation.config(['$stateProvider', function config( $stateProvider ) {
                 templateUrl: 'dataValidation/dataValidation.tpl.html'
             }
         },
-        data:{ pageTitle: 'Isha Product Details' }
+        data:{ pageTitle: 'Isha Products | Details' }
     });
 }]);
 
@@ -42,7 +42,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 	$scope.pagination.maxPages = 10;
 	$scope.pagination.currentPage = 1;
 
-	$scope.pagination.updatePoisInView = function() {
+	$scope.pagination.updateProductsInView = function() {
 		var begin = (($scope.pagination.currentPage - 1) * $scope.pagination.numPerPage);
 		var end = begin + $scope.pagination.numPerPage;
 		$scope.poisInView = (typeof($scope.productList.length) != 'undefined') ? $scope.productList.slice(begin, end) : [];
@@ -51,7 +51,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 
 	$scope.pagination.reset = function () {
 		$scope.pagination.currentPage = 1;
-		$scope.pagination.updatePoisInView();
+		$scope.pagination.updateProductsInView();
 	};
 
 	$scope.pagination.reset();
@@ -85,14 +85,14 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 		$scope.poiGetFail = false;
 
 		$http.get($scope.isha.baseURL + '?page_size='+ $scope.isha.pageSize  + '&page=' + $scope.isha.page + '&active=' + $scope.isha.activeProducts,
-				{headers: {'Authorization': 'Bearer ' + $scope.isha.token}})
+				{headers: {'Authorization': $rootScope.credentials.tokenType + ' ' + $rootScope.credentials.token}})
 				.success(function(data) {
 					$('#search-for-offers-button').removeAttr('disabled');
 					$('#search-for-pois-button').removeAttr('disabled');
 					$scope.poiSearching = false;
 					$scope.showPois = true;
 					$scope.productList = data.products;
-					$scope.pagination.updatePoisInView();
+					$scope.pagination.updateProductsInView();
 				})
 				.error(function(data, status, headers) {
 					$('#search-for-offers-button').removeAttr('disabled');
