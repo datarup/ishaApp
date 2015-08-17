@@ -84,7 +84,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 		$scope.poiSearching = true;
 		$scope.poiGetFail = false;
 
-		$http.get($scope.isha.baseURL + '?page_size='+ $scope.isha.pageSize  + '&page=' + $scope.isha.page + '&active=' + $scope.isha.activeProducts,
+		$http.get($rootScope.urls.productsURL + '?page_size='+ $scope.isha.pageSize  + '&page=' + $scope.isha.page + '&active=' + $scope.isha.activeProducts,
 				{headers: {'Authorization': $rootScope.credentials.tokenType + ' ' + $rootScope.credentials.token}})
 				.success(function(data) {
 					$('#search-for-offers-button').removeAttr('disabled');

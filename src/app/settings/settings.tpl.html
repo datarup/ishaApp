@@ -1,0 +1,101 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- TODO: Implement responsive design with nav bar-->
+        <div class="row">
+            <div class="col-xs-12" id="navbar-container">
+                <div class="navbar navbar-default">
+                    <div class="collapse navbar-collapse" collapse="menuCollapsed">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li ui-sref-active="active">
+                                <a href="#/data"><strong>PRODUCT DETAILS</strong></a>
+                            </li>
+                            <li ui-sref-active="active" class="active current-link">
+                                <a href="#/refreshToken"><strong>REFRESH TOKEN</strong></a>
+                            </li>
+                            <li ui-sref-active="active" class="active current-link">
+                                <a href="#/settings"><strong>SETTINGS</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="settings">
+            <br class="wrap">
+                <br/>
+                <div class="row navbar navbar-default searchbar">
+                    <div class="col-sm-3">
+                        <h4>SETTINGS</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="save-settings-button" type="submit" ng-click="saveChanges()" class="btn btn-primary btn-block ">
+                            <span data-ng-hide="poiSearching">SAVE</span>
+                            <span data-ng-show="poiSearching">Saving <i class="fa fa-spinner fa-spin"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="get-settings-button" type="submit" ng-click="getSettings()" class="btn btn-primary btn-block ">
+                            <span data-ng-hide="poiSearching">GET</span>
+                            <span data-ng-show="poiSearching">Getting <i class="fa fa-spinner fa-spin"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">PRODUCTS URL</span>
+                            <input type="text" ng-model="urls.productsURL" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">REFRESH TOKEN URL</span>
+                            <input type="text" ng-model="urls.refreshTokenURL" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">CLIENT ID</span>
+                            <input type="text" ng-model="credentials.clientId" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">CLIENT SECRET</span>
+                            <input type="text" ng-model="credentials.clientSecret" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">REFRESH TOKEN</span>
+                            <input type="text" ng-model="credentials.refreshToken" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <div class="input-group">
+                            <span class="input-group-addon">TOKEN</span>
+                            <input type="text" ng-model="credentials.token" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                <br/>
+
+                <form class="form-inline" role="form" name="settingsForm"  >
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
