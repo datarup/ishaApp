@@ -34,7 +34,7 @@ settings.controller( 'SettingsCtrl', [ '$rootScope', '$scope', '$http',
 			'ishaApp_credentials_refreshToken' : $rootScope.credentials.refreshToken,
 			'ishaApp_credentials_token' : $rootScope.credentials.token
 		}, function() {
-			// Notify that we saved.
+			// TODO: Notify that we saved.
 			//message('Settings saved');
 		});
 	};

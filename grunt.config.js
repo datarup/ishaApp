@@ -22,7 +22,7 @@ module.exports = {
 	 * app's unit tests.
 	 */
 	app_files: {
-		js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js', '!src/app/advisor.environment.js' ],
+		js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js', '!src/app/advisor.environment.js', '!src/background.js' ],
 		js_all: ['build/src/app_all.js'],
 		jsunit: [ 'src/**/*.spec.js' ],
 

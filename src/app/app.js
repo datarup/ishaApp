@@ -49,17 +49,18 @@ app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScop
 	$rootScope.credentials.clientSecret = '';
 	$rootScope.credentials.refreshToken = '';
 
-	window.chrome.storage.onChanged.addListener(function(changes, namespace) {
-		for (var key in changes) {
-			var storageChange = changes[key];
-			console.log('Storage key "%s" in namespace "%s" changed. ' +
-					'Old value was "%s", new value is "%s".',
-					key,
-					namespace,
-					storageChange.oldValue,
-					storageChange.newValue);
-		}
-	});
+	//TODO: Check if this is really required?
+	//window.chrome.storage.onChanged.addListener(function(changes, namespace) {
+	//	for (var key in changes) {
+	//		var storageChange = changes[key];
+	//		console.log('Storage key "%s" in namespace "%s" changed. ' +
+	//				'Old value was "%s", new value is "%s".',
+	//				key,
+	//				namespace,
+	//				storageChange.oldValue,
+	//				storageChange.newValue);
+	//	}
+	//});
 
 	//Load changes from chrome storage on startup
 	$scope.loadSettings = function() {
@@ -73,6 +74,7 @@ app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScop
 			$rootScope.credentials.clientSecret = result.ishaApp_credentials_ClientSecret;
 			$rootScope.credentials.refreshToken = result.ishaApp_credentials_refreshToken;
 			$rootScope.credentials.token = result.ishaApp_credentials_token;
+			$rootScope.credentials.tokenExpiresAt = result.ishaApp_credentials_tokenExpiresAt;
 		});
 	};
 	$scope.loadSettings();

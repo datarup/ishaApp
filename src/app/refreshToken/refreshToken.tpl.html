@@ -60,8 +60,8 @@
                     </div>
                     <div class="col-sm-4">
                         <button id="refresh-access-token-button" type="submit" ng-click="getNewAccessToken()" class="btn btn-primary btn-block ">
-                            <span data-ng-hide="poiSearching">REFRESH TOKEN</span>
-                            <span data-ng-show="poiSearching">Waiting for VendHQ Response <i class="fa fa-spinner fa-spin"></i></span>
+                            <span data-ng-hide="refreshingToken">REFRESH TOKEN</span>
+                            <span data-ng-show="refreshingToken">Waiting for VendHQ Response <i class="fa fa-spinner fa-spin"></i></span>
                         </button>
                     </div>
                 </div>

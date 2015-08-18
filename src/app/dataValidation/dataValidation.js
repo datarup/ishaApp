@@ -65,7 +65,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 	$scope.showOffers = false;
 	$scope.showPois = false;
 	$scope.offerSearching = false;
-	$scope.poiSearching = false;
+	$scope.productSearching = false;
 	$scope.poiGetFail = false;
 	$scope.offesGetFail = false;
 
@@ -81,7 +81,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 		$('#search-for-pois-button').attr('disabled','disabled');
 		$scope.showOffers = false;
 		$scope.showPois = false;
-		$scope.poiSearching = true;
+		$scope.productSearching = true;
 		$scope.poiGetFail = false;
 
 		$http.get($rootScope.urls.productsURL + '?page_size='+ $scope.isha.pageSize  + '&page=' + $scope.isha.page + '&active=' + $scope.isha.activeProducts,
@@ -89,7 +89,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 				.success(function(data) {
 					$('#search-for-offers-button').removeAttr('disabled');
 					$('#search-for-pois-button').removeAttr('disabled');
-					$scope.poiSearching = false;
+					$scope.productSearching = false;
 					$scope.showPois = true;
 					$scope.productList = data.products;
 					$scope.pagination.updateProductsInView();
@@ -98,7 +98,7 @@ dataValidation.controller( 'DataValidationCtrl', [ '$rootScope', '$scope', '$htt
 					$('#search-for-offers-button').removeAttr('disabled');
 					$('#search-for-pois-button').removeAttr('disabled');
 					$scope.showPois = false;
-					$scope.poiSearching = false;
+					$scope.productSearching = false;
 					$scope.poiGetFail = true;
 				});
 	};
