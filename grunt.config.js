@@ -38,10 +38,10 @@ module.exports = {
 	dist_files: {
 		//js_all: ['build/app_all.js'], //Copying it directly here, until we get minification working for app_all
 		vendor_all: ['build//vendor/vendor_all.min.js'],
-		css: [ 'build/assets/ishaApp-1.0.0.min.css' ],
+		css: [ 'build/assets/vendApp-1.0.0.min.css' ],
 		html: [ ' build/index.html' ],
 		chromeApp: ['build/background.js', 'build/manifest.json'],
-		images: ['build/assets/images/**/*.png']
+		images: ['build/assets/images/**/vend*.png']
 	},
 
 	/**

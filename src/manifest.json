@@ -1,6 +1,6 @@
 {
-"name": "Isha App",
-"version": "1.0.0",
+"name": "Vend Client",
+"version": "1.0.1",
 "description": "Shows product list",
 "permissions": [
   "identity",
@@ -12,14 +12,14 @@
 "background": { "scripts": ["background.js"]},
 
 "browser_action": {
-  "default_icon": "assets/images/isha19.png",
-  "default_title": "Isha App"
+  "default_icon": "assets/images/vend19.png",
+  "default_title": "Vend Client"
 },
 
 "icons": {
-  "16": "assets/images/isha16.png",
-  "48": "assets/images/isha48.png",
-  "128": "assets/images/isha128.png"
+  "16": "assets/images/vend16.png",
+  "48": "assets/images/vend48.png",
+  "128": "assets/images/vend128.png"
 },
 
 "manifest_version": 2
