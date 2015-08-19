@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-sm-3">
                         <button id="save-settings-button" type="submit" ng-click="saveChanges()" class="btn btn-primary btn-block ">
-                            <span data-ng-hide="savingSettings">aSAVE</span>
+                            <span data-ng-hide="savingSettings">SAVE</span>
                             <span data-ng-show="savingSettings">Saving <i class="fa fa-spinner fa-spin"></i></span>
                         </button>
                     </div>
@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-sm-10 ">
                         <div class="input-group">
-                            <span class="input-group-addon">CLIENT SECRET</span>
+                            <span class="input-group-addon">CLIENT SECRET  <b>**</b></span>
                             <input type="text" ng-model="credentials.clientSecret" class="form-control">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-sm-10 ">
                         <div class="input-group">
-                            <span class="input-group-addon">REFRESH TOKEN</span>
+                            <span class="input-group-addon">REFRESH TOKEN <b>**</b></span>
                             <input type="text" ng-model="credentials.refreshToken" class="form-control">
                         </div>
                     </div>
@@ -77,9 +77,14 @@
                 <div class="row">
                     <div class="col-sm-10 ">
                         <div class="input-group">
-                            <span class="input-group-addon">TOKEN</span>
+                            <span class="input-group-addon">TOKEN  <b>**</b></span>
                             <input type="text" ng-model="credentials.token" class="form-control">
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 ">
+                        <span class="input-group-addon"><b>**</b> Do not save these in production environment. The saved values are not secured</span>
                     </div>
                 </div>
                 <br/>
