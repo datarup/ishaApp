@@ -49,7 +49,8 @@ refreshToken.controller( 'RefreshTokenCtrl', [ '$rootScope', '$scope', '$http',
 				if(response.data){
 					$rootScope.credentials.token = response.data.access_token;
 					$rootScope.credentials.tokenType = response.data.token_type;
-					$rootScope.credentials.tokenExpiresAt = new Date(response.data.expires*1000);
+					$rootScope.credentials.tokenExpiresAt = response.data.expires;
+					$rootScope.credentials.tokenExpiresAtFriendly = new Date($rootScope.credentials.tokenExpiresAt*1000);
 					$rootScope.credentials.tokenExpiresIn = response.data.expires_in;
 					window.chrome.storage.sync.set({
 						'ishaApp_credentials_token' : $rootScope.credentials.token,
@@ -59,10 +60,10 @@ refreshToken.controller( 'RefreshTokenCtrl', [ '$rootScope', '$scope', '$http',
 						//message('Settings saved');
 					});
 				}
-			}, function(data, status, headers) {
+			}, function(data) {
 				$scope.refreshTokenFail = true;
 				$scope.refreshingToken = false;
-				$scope.refreshTokenError = json.toString(data);
+				$scope.refreshTokenError = angular.fromJson(data);
 			}
 		);
 	};

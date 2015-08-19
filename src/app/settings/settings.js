@@ -19,23 +19,34 @@ settings.config(['$stateProvider', function config( $stateProvider ) {
     });
 }]);
 
-settings.controller( 'SettingsCtrl', [ '$rootScope', '$scope', '$http',
-	function OffersController( $rootScope, $scope, $http) {
+settings.controller( 'SettingsCtrl', [ '$rootScope', '$scope', '$timeout',
+	function SettingsController( $rootScope, $scope, $timeout) {
 
 	$scope.settingsFail = false;
 	$scope.settingsError = '';
+	$scope.savingSettings = false;
+	$scope.showSuccess = false;
+	$scope.message = [
+		{ type: 'success', msg: 'Settings saved successfully!' }
+	];
 
 	$scope.saveChanges = function() {
+		$scope.savingSettings = true;
 		window.chrome.storage.sync.set({
 			'ishaApp_urls_productsURL': $rootScope.urls.productsURL,
 			'ishaApp_urls_refreshTokenURL' : $rootScope.urls.refreshTokenURL,
 			'ishaApp_credentials_ClientId' : $rootScope.credentials.clientId,
 			'ishaApp_credentials_ClientSecret' : $rootScope.credentials.clientSecret,
 			'ishaApp_credentials_refreshToken' : $rootScope.credentials.refreshToken,
-			'ishaApp_credentials_token' : $rootScope.credentials.token
+			'ishaApp_credentials_token' : $rootScope.credentials.token,
+			'ishaApp_credentials_tokenExpiresAt' : $rootScope.credentials.tokenExpiresAt
 		}, function() {
-			// TODO: Notify that we saved.
-			//message('Settings saved');
+			$scope.savingSettings = false;
+			$scope.showSuccess = true;
+			//TODO: Show message if saved successfully
+			//$timeout(function(){
+			//	$scope.showSuccess = false;
+			//}, 2000);
 		});
 	};
 

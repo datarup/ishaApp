@@ -34,7 +34,6 @@ app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScop
     }
   });
 
-	//TODO: If present credentials are present in local storage, retrieve from it on startup
 	$rootScope.urls = {};
 	$rootScope.urls.productsURL = '';
 	$rootScope.urls.refreshTokenURL = '';
@@ -44,29 +43,17 @@ app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScop
 	$rootScope.credentials.tokenType = 'Bearer';
 	$rootScope.credentials.tokenExpiresIn = '';
 	$rootScope.credentials.tokenExpiresAt = '';
+	$rootScope.credentials.tokenExpiresAtFriendly = '';
 	$rootScope.credentials.refreshTokenURL = '';
 	$rootScope.credentials.clientId = '';
 	$rootScope.credentials.clientSecret = '';
 	$rootScope.credentials.refreshToken = '';
 
-	//TODO: Check if this is really required?
-	//window.chrome.storage.onChanged.addListener(function(changes, namespace) {
-	//	for (var key in changes) {
-	//		var storageChange = changes[key];
-	//		console.log('Storage key "%s" in namespace "%s" changed. ' +
-	//				'Old value was "%s", new value is "%s".',
-	//				key,
-	//				namespace,
-	//				storageChange.oldValue,
-	//				storageChange.newValue);
-	//	}
-	//});
-
 	//Load changes from chrome storage on startup
 	$scope.loadSettings = function() {
 		window.chrome.storage.sync.get([
 			'ishaApp_urls_productsURL', 'ishaApp_urls_refreshTokenURL', 'ishaApp_credentials_ClientId',
-			'ishaApp_credentials_ClientSecret', 'ishaApp_credentials_refreshToken', 'ishaApp_credentials_token'
+			'ishaApp_credentials_ClientSecret', 'ishaApp_credentials_refreshToken', 'ishaApp_credentials_token', 'ishaApp_credentials_tokenExpiresAt'
 		], function (result) {
 			$rootScope.urls.productsURL = result.ishaApp_urls_productsURL;
 			$rootScope.urls.refreshTokenURL = result.ishaApp_urls_refreshTokenURL;
@@ -75,6 +62,7 @@ app.controller( 'AppCtrl',[ '$rootScope', '$scope', function AppCtrl ( $rootScop
 			$rootScope.credentials.refreshToken = result.ishaApp_credentials_refreshToken;
 			$rootScope.credentials.token = result.ishaApp_credentials_token;
 			$rootScope.credentials.tokenExpiresAt = result.ishaApp_credentials_tokenExpiresAt;
+			$rootScope.credentials.tokenExpiresAtFriendly = new Date($rootScope.credentials.tokenExpiresAt*1000);
 		});
 	};
 	$scope.loadSettings();

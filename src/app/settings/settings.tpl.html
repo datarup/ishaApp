@@ -23,21 +23,14 @@
         </div>
         <div id="settings">
             <br class="wrap">
-                <br/>
-                <div class="row navbar navbar-default searchbar">
-                    <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-2">
                         <h4>SETTINGS</h4>
                     </div>
                     <div class="col-sm-3">
                         <button id="save-settings-button" type="submit" ng-click="saveChanges()" class="btn btn-primary btn-block ">
-                            <span data-ng-hide="productSearching">SAVE</span>
-                            <span data-ng-show="productSearching">Saving <i class="fa fa-spinner fa-spin"></i></span>
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button id="get-settings-button" type="submit" ng-click="getSettings()" class="btn btn-primary btn-block ">
-                            <span data-ng-hide="productSearching">GET</span>
-                            <span data-ng-show="productSearching">Getting <i class="fa fa-spinner fa-spin"></i></span>
+                            <span data-ng-hide="savingSettings">aSAVE</span>
+                            <span data-ng-show="savingSettings">Saving <i class="fa fa-spinner fa-spin"></i></span>
                         </button>
                     </div>
                 </div>
