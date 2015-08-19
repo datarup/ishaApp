@@ -15,7 +15,7 @@ dataValidation.config(['$stateProvider', function config( $stateProvider ) {
                 templateUrl: 'dataValidation/dataValidation.tpl.html'
             }
         },
-        data:{ pageTitle: 'Isha Products | Details' }
+        data:{ pageTitle: 'Product Details' }
     });
 }]);
 

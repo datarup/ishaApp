@@ -14,7 +14,7 @@ refreshToken.config(['$stateProvider', function config( $stateProvider ) {
                 templateUrl: 'refreshToken/refreshToken.tpl.html'
             }
         },
-        data:{ pageTitle: 'Isha Products | Refresh Token' }
+        data:{ pageTitle: 'Refresh Token' }
     });
 }]);
 

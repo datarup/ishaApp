@@ -15,7 +15,7 @@ settings.config(['$stateProvider', function config( $stateProvider ) {
                 templateUrl: 'settings/settings.tpl.html'
             }
         },
-        data:{ pageTitle: 'Isha Products | Settings' }
+        data:{ pageTitle: 'Settings' }
     });
 }]);
 
