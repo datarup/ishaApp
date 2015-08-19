@@ -41,7 +41,7 @@ module.exports = {
 		css: [ 'build/assets/vendApp-1.0.0.min.css' ],
 		html: [ ' build/index.html' ],
 		chromeApp: ['build/background.js', 'build/manifest.json'],
-		images: ['build/assets/images/**/vend*.png']
+		images: ['build/assets/images/vend*.png']
 	},
 
 	/**
