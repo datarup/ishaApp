@@ -1,6 +1,7 @@
 # API data reader
 
-A simple chrome extension to read and display data from a third party Rest API, with OAuth2.0 authentication
+A simple chrome extension to read and display data from a third party Rest API, with OAuth2.0 authentication.
+The extension is now live on [Chrome Web Store] (https://chrome.google.com/webstore/detail/vend-client/lgiljbkccbplmikkcenfbhokofjpffob)
 
 ## Quick Start
 
@@ -23,11 +24,9 @@ The extension is currently configured to work with VendHq product list API only.
 
 ## TODO
 
-1. Add refresh token capability 
-2. Add complete end-to-end OAuth token generation
-3. Support more APIs within VendHq initially and branch out to other APIs
-4. Add feature to save remote URLs and other client info in local storage - A settings menu
-5. Implement a better design for Navbar/Menu
+1. Add complete end-to-end OAuth token generation
+2. Support more APIs within VendHq initially and branch out to other APIs
+3. Implement a better design for Navbar/Menu
 
 ## Contributing
 
@@ -37,7 +36,9 @@ Checkout the TODO list and/or issues.
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+5. Submit a pull request :)
+6. Provide feedback/comments
+
 
 ## License
 
