@@ -2,7 +2,7 @@
 
 A simple chrome extension to read and display data from a third party Rest API, with OAuth2.0 authentication.
 The extension is now live on [Chrome Web Store] (https://chrome.google.com/webstore/detail/vend-client/lgiljbkccbplmikkcenfbhokofjpffob)
-
+Visit the project page [here] (http://datarup.github.io/vendClient)
 ## Quick Start
 
 Install Node.js and then:
