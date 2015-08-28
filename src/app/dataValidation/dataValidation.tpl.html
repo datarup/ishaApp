@@ -32,16 +32,21 @@
                     </div>
                 </div>
                 <div class="row no-gutter navbar navbar-default searchbar">
-                    <div class="col-sm-7">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <span class="input-group-addon">URL</span>
                             <input type="text" ng-model="urls.productsURL" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-7">
                         <div class="input-group">
                             <span class="input-group-addon">Token</span>
-                            <input type="text" ng-model="credentials.token" class="form-control">
+                            <input type="{{showToken ? 'text' : 'password'}}" ng-model="credentials.token" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="input-group classWithPad">
+                            <input type="checkbox" ng-model="showToken" ng-checked="false"> Show
                         </div>
                     </div>
                 </div>

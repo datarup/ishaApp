@@ -1,4 +1,4 @@
-var dataModals = angular.module('ishaApp.modals', []);
+var dataModals = angular.module('vendClient.modals', []);
 
 dataModals.service('modalService', ['$modal',
 	function ($modal) {

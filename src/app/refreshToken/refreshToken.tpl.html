@@ -72,9 +72,9 @@
                 <form class="form-inline" role="form" name="poiForm" data-ng-hide="refreshTokenFail" >
                     <div id="pois-list" >
                         <div class="col-md-1 visible-sm"></div>
-                        <div class="col-md-10">
+                        <div class="col-md-10" data-ng-show="credentials.tokenExpiresAt">
                             <h4>Token: <b>{{credentials.tokenType}} {{credentials.token}}</b></h4>
-                            <h4>Expires: <b>{{credentials.tokenExpiresAtFriendly | date: 'yyyy/MM/dd HH:mm:ss'}}</b></h4>
+                            <h4>Expires: <b>{{(credentials.tokenExpiresAtFriendly) ?  (credentials.tokenExpiresAtFriendly | date: 'yyyy/MM/dd HH:mm:ss'): ''}}</b></h4>
                         </div>
                     </div>
                 </form>

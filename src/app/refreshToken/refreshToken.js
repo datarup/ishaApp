@@ -1,4 +1,4 @@
-var refreshToken = angular.module( 'ishaApp.refreshToken', [
+var refreshToken = angular.module( 'vendClient.refreshToken', [
 				'ui.router',
         'ui.bootstrap',
         'ui.select',
@@ -53,8 +53,8 @@ refreshToken.controller( 'RefreshTokenCtrl', [ '$rootScope', '$scope', '$http',
 					$rootScope.credentials.tokenExpiresAtFriendly = new Date($rootScope.credentials.tokenExpiresAt*1000);
 					$rootScope.credentials.tokenExpiresIn = response.data.expires_in;
 					window.chrome.storage.sync.set({
-						'ishaApp_credentials_token' : $rootScope.credentials.token,
-						'ishaApp_credentials_tokenExpiresAt' : $rootScope.credentials.tokenExpiresAt
+						'vendClient_credentials_token' : $rootScope.credentials.token,
+						'vendClient_credentials_tokenExpiresAt' : $rootScope.credentials.tokenExpiresAt
 					}, function() {
 						// TODO: Notify that we saved.
 						//message('Settings saved');

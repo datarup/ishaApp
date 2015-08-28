@@ -1,9 +1,8 @@
-var dataValidation = angular.module( 'ishaApp.dataValidation', [
+var dataValidation = angular.module( 'vendClient.dataValidation', [
 				'ui.router',
         'ui.bootstrap',
         'ui.select',
-        'ngSanitize',
-				'ishaApp.modals'
+        'ngSanitize'
     ]);
 
 dataValidation.config(['$stateProvider', function config( $stateProvider ) {

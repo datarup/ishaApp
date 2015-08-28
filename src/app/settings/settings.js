@@ -1,9 +1,8 @@
-var settings = angular.module( 'ishaApp.settings', [
+var settings = angular.module( 'vendClient.settings', [
 				'ui.router',
         'ui.bootstrap',
         'ui.select',
-        'ngSanitize',
-				'ishaApp.modals'
+        'ngSanitize'
     ]);
 
 settings.config(['$stateProvider', function config( $stateProvider ) {
@@ -33,13 +32,13 @@ settings.controller( 'SettingsCtrl', [ '$rootScope', '$scope', '$timeout',
 	$scope.saveChanges = function() {
 		$scope.savingSettings = true;
 		window.chrome.storage.sync.set({
-			'ishaApp_urls_productsURL': $rootScope.urls.productsURL,
-			'ishaApp_urls_refreshTokenURL' : $rootScope.urls.refreshTokenURL,
-			'ishaApp_credentials_ClientId' : $rootScope.credentials.clientId,
-			'ishaApp_credentials_ClientSecret' : $rootScope.credentials.clientSecret,
-			'ishaApp_credentials_refreshToken' : $rootScope.credentials.refreshToken,
-			'ishaApp_credentials_token' : $rootScope.credentials.token,
-			'ishaApp_credentials_tokenExpiresAt' : $rootScope.credentials.tokenExpiresAt
+			'vendClient_urls_productsURL': $rootScope.urls.productsURL,
+			'vendClient_urls_refreshTokenURL' : $rootScope.urls.refreshTokenURL,
+			'vendClient_credentials_ClientId' : $rootScope.credentials.clientId,
+			'vendClient_credentials_ClientSecret' : $rootScope.credentials.clientSecret,
+			'vendClient_credentials_refreshToken' : $rootScope.credentials.refreshToken,
+			'vendClient_credentials_token' : $rootScope.credentials.token,
+			'vendClient_credentials_tokenExpiresAt' : $rootScope.credentials.tokenExpiresAt
 		}, function() {
 			$scope.savingSettings = false;
 			$scope.showSuccess = true;
